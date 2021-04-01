@@ -235,7 +235,7 @@ class Main implements MainLogic {
 
 
     @Override
-    public void buildLayouts()  {
+    public void buildLayouts() {
         Scanner in = new Scanner(System.in);
         System.out.println("write down word_line size ");
         int word = in.nextInt();
@@ -286,11 +286,387 @@ class Main implements MainLogic {
 
 
     public static void main(String[] args) {
-        new Main().buildLayouts();
+
+
 
     }
 }
 
+class PinsHandler implements PinsHandlerPlan {
+
+    private final double distanceBetweenTwoPoints = 31.78;
+
+    @Override
+    public String generateRightBaseAndRect(int word, int bit) {
+        String result = "";
+        String planType = "Dec" + word;
+        int rollNo = AsideSolution.log2(word);
+        PlanFactory planFactory = new PlanFactory();
+        Plan plan = planFactory.getPlan(planType);
+        Map<String, Double> points = plan.getPointXY();
+        NumberFormat nf = NumberFormat.getInstance();
+        nf.setMaximumFractionDigits(3);
+        int shiftX = (bit / 4) - 1;
+        for (int i = 0; i <= rollNo; i++) {
+            double pointX = (points.get("pointx" + i) + distanceBetweenTwoPoints + shiftX * ShiftSize.dx);
+            double pointY = points.get("pointy" + i);
+//rect
+            double x1r = (pointX - LeftRectangle.half_of_a_rect_length);//rect
+            double y1r = (pointY - LeftRectangle.half_of_a_rect_width);//rect
+//base
+            double xb1 = (pointX - Base.half_of_base_length);
+            double xb2 = (pointX + Base.half_of_base_length);
+            double xb3 = xb2;
+            double xb4 = xb1;
+            double yb1 = (pointY - Base.half_of_base_length);
+            double yb2 = yb1;
+            double yb3 = (pointY + Base.half_of_base_width);
+            double yb4 = yb3;
+            String rect = "t{41 mc m0.2 xy(" + nf.format(x1r) + " " + nf.format(y1r) + ")" + " " + "'A2<" + i + ">'}";
+            String base = "b{41 xy(" + nf.format(xb1) + " " + nf.format(yb1) + " " + nf.format(xb2) + " " + nf.format(yb2) + " " +
+                    nf.format(xb3) + " " + nf.format(yb3) + " " + nf.format(xb4) + " " + nf.format(yb4) + ")}";
+            result += rect + "\n" + base + "\n";
+        }
+
+        return result;
+
+    }
+
+
+    @Override
+    public String generateLeftBaseAndRect(int word) {
+        String result = "";
+        String planType = "Dec" + word;
+        int rollNo = AsideSolution.log2(word);
+        PlanFactory planFactory = new PlanFactory();
+        Plan plan = planFactory.getPlan(planType);
+        Map<String, Double> points = plan.getPointXY();
+        NumberFormat nf = NumberFormat.getInstance();
+        nf.setMaximumFractionDigits(3);
+        for (int i = 0; i <= rollNo; i++) {
+            double pointX = points.get("pointx" + i);
+            double pointY = points.get("pointy" + i);
+//rect
+            double x1r = (pointX - LeftRectangle.half_of_a_rect_length);//rect
+            double y1r = (pointY - LeftRectangle.half_of_a_rect_width);//rect
+//base
+            double xb1 = (pointX - Base.half_of_base_length);
+            double xb2 = (pointX + Base.half_of_base_length);
+            double xb3 = xb2;
+            double xb4 = xb1;
+            double yb1 = (pointY - Base.half_of_base_length);
+            double yb2 = yb1;
+            double yb3 = (pointY + Base.half_of_base_width);
+            double yb4 = yb3;
+            String rect = "t{41 mc m0.2 xy(" + nf.format(x1r) + " " + nf.format(y1r) + ")" + " " + "'A1<" + i + ">'}";
+            String base = "b{41 xy(" + nf.format(xb1) + " " + nf.format(yb1) + " " + nf.format(xb2) + " " + nf.format(yb2) + " " +
+                    nf.format(xb3) + " " + nf.format(yb3) + " " + nf.format(xb4) + " " + nf.format(yb4) + ")}";
+            result += rect + "\n" + base + "\n";
+        }
+
+        return result;
+    }
+
+    static abstract class Plan {
+        protected Map<String, Double> pointXY;
+
+        abstract Map<String, Double> getPointXY();
+
+    }
+
+    public static class Dec4 extends Plan {
+
+        public Dec4() {// 01
+            pointXY = new HashMap<>();
+            pointXY.put("pointx0", new Double(0));
+            pointXY.put("pointx1", new Double(0));
+            pointXY.put("pointx2", new Double(1));
+            pointXY.put("pointy0", new Double(0));
+            pointXY.put("pointy1", new Double(0));
+            pointXY.put("pointy2", new Double(1));
+        }
+
+
+        @Override
+        Map<String, Double> getPointXY() {
+            return pointXY;
+        }
+    }
+
+    public static class Dec8 extends Plan {//012
+
+        public Dec8() {
+            pointXY = new HashMap<>();
+            pointXY.put("pointx0", new Double(0));
+            pointXY.put("pointx1", new Double(0));
+            pointXY.put("pointx2", new Double(0));
+            pointXY.put("pointx3", new Double(1));
+            pointXY.put("pointy0", new Double(0));
+            pointXY.put("pointy1", new Double(0));
+            pointXY.put("pointy2", new Double(0));
+            pointXY.put("pointy3", new Double(1));
+        }
+
+
+        @Override
+        Map<String, Double> getPointXY() {
+            return pointXY;
+        }
+    }
+
+    public static class Dec16 extends Plan {//0123
+
+        public Dec16() {
+            pointXY = new HashMap<>();
+            pointXY.put("pointx0", new Double(0));
+            pointXY.put("pointx1", new Double(0));
+            pointXY.put("pointx2", new Double(0));
+            pointXY.put("pointx3", new Double(0));
+            pointXY.put("pointx4", new Double(1));
+            pointXY.put("pointy0", new Double(0));
+            pointXY.put("pointy1", new Double(0));
+            pointXY.put("pointy2", new Double(0));
+            pointXY.put("pointy3", new Double(0));
+            pointXY.put("pointy4", new Double(1));
+        }
+
+
+        @Override
+        Map<String, Double> getPointXY() {
+            return pointXY;
+        }
+    }
+
+    public static class Dec32 extends Plan {//01234
+
+        public Dec32() {
+            pointXY = new HashMap<>();
+            pointXY.put("pointx0", new Double(0));
+            pointXY.put("pointx1", new Double(0));
+            pointXY.put("pointx2", new Double(0));
+            pointXY.put("pointx3", new Double(0));
+            pointXY.put("pointx4", new Double(0));
+            pointXY.put("pointx5", new Double(1));
+            pointXY.put("pointy0", new Double(0));
+            pointXY.put("pointy1", new Double(0));
+            pointXY.put("pointy2", new Double(0));
+            pointXY.put("pointy3", new Double(0));
+            pointXY.put("pointy4", new Double(0));
+            pointXY.put("pointy5", new Double(1));
+        }
+
+
+        @Override
+        Map<String, Double> getPointXY() {
+            return pointXY;
+        }
+    }
+
+    public static class Dec64 extends Plan {//12345
+
+        public Dec64() {
+            pointXY = new HashMap<>();
+            pointXY.put("pointx0", new Double(0));
+            pointXY.put("pointx1", new Double(0));
+            pointXY.put("pointx2", new Double(0));
+            pointXY.put("pointx3", new Double(0));
+            pointXY.put("pointx4", new Double(0));
+            pointXY.put("pointx5", new Double(0));
+            pointXY.put("pointx6", new Double(1));
+            pointXY.put("pointy0", new Double(0));
+            pointXY.put("pointy1", new Double(0));
+            pointXY.put("pointy2", new Double(0));
+            pointXY.put("pointy3", new Double(0));
+            pointXY.put("pointy4", new Double(0));
+            pointXY.put("pointy5", new Double(0));
+            pointXY.put("pointy6", new Double(1));
+        }
+
+
+        @Override
+        Map<String, Double> getPointXY() {
+            return pointXY;
+        }
+    }
+
+    public static class Dec128 extends Plan {//0123456
+
+        public Dec128() {
+            pointXY = new HashMap<>();
+            pointXY.put("pointx0", new Double(0));
+            pointXY.put("pointx1", new Double(0));
+            pointXY.put("pointx2", new Double(0));
+            pointXY.put("pointx3", new Double(0));
+            pointXY.put("pointx4", new Double(0));
+            pointXY.put("pointx5", new Double(0));
+            pointXY.put("pointx6", new Double(0));
+            pointXY.put("pointx7", new Double(1));
+            pointXY.put("pointy0", new Double(0));
+            pointXY.put("pointy1", new Double(0));
+            pointXY.put("pointy2", new Double(0));
+            pointXY.put("pointy3", new Double(0));
+            pointXY.put("pointy4", new Double(0));
+            pointXY.put("pointy5", new Double(0));
+            pointXY.put("pointy6", new Double(0));
+            pointXY.put("pointy7", new Double(1));
+        }
+
+
+        @Override
+        Map<String, Double> getPointXY() {
+            return pointXY;
+        }
+    }
+
+    public static class Dec256 extends Plan {//01234567
+
+        public Dec256() {
+            pointXY = new HashMap<>();
+            pointXY.put("pointx0", new Double(0));
+            pointXY.put("pointx1", new Double(0));
+            pointXY.put("pointx2", new Double(0));
+            pointXY.put("pointx3", new Double(0));
+            pointXY.put("pointx4", new Double(0));
+            pointXY.put("pointx5", new Double(0));
+            pointXY.put("pointx6", new Double(0));
+            pointXY.put("pointx7", new Double(1));
+            pointXY.put("pointx8", new Double(1));
+            pointXY.put("pointy0", new Double(0));
+            pointXY.put("pointy1", new Double(0));
+            pointXY.put("pointy2", new Double(0));
+            pointXY.put("pointy3", new Double(0));
+            pointXY.put("pointy4", new Double(0));
+            pointXY.put("pointy5", new Double(0));
+            pointXY.put("pointy6", new Double(0));
+            pointXY.put("pointy7", new Double(1));
+            pointXY.put("pointy8", new Double(1));
+        }
+
+
+        @Override
+        Map<String, Double> getPointXY() {
+            return pointXY;
+        }
+    }
+
+    public static class Dec512 extends Plan {
+        public Dec512() {
+            pointXY = new HashMap<>();
+            pointXY.put("pointx0", new Double(0));
+            pointXY.put("pointx1", new Double(0));
+            pointXY.put("pointx2", new Double(0));
+            pointXY.put("pointx3", new Double(0));
+            pointXY.put("pointx4", new Double(0));
+            pointXY.put("pointx5", new Double(0));
+            pointXY.put("pointx6", new Double(0));
+            pointXY.put("pointx7", new Double(1));
+            pointXY.put("pointx8", new Double(1));
+            pointXY.put("pointx9", new Double(1));
+            pointXY.put("pointy0", new Double(0));
+            pointXY.put("pointy1", new Double(0));
+            pointXY.put("pointy2", new Double(0));
+            pointXY.put("pointy3", new Double(0));
+            pointXY.put("pointy4", new Double(0));
+            pointXY.put("pointy5", new Double(0));
+            pointXY.put("pointy6", new Double(0));
+            pointXY.put("pointy7", new Double(1));
+            pointXY.put("pointy8", new Double(1));
+            pointXY.put("pointy9", new Double(1));
+        }
+
+
+        @Override
+        Map<String, Double> getPointXY() {
+            return pointXY;
+        }
+    }
+
+    public static class Dec1024 extends Plan {
+        public Dec1024() {
+            pointXY = new HashMap<>();
+            pointXY.put("pointx0", new Double(0));
+            pointXY.put("pointx1", new Double(0));
+            pointXY.put("pointx2", new Double(0));
+            pointXY.put("pointx3", new Double(0));
+            pointXY.put("pointx4", new Double(0));
+            pointXY.put("pointx5", new Double(0));
+            pointXY.put("pointx6", new Double(0));
+            pointXY.put("pointx7", new Double(1));
+            pointXY.put("pointx8", new Double(1));
+            pointXY.put("pointx9", new Double(1));
+            pointXY.put("pointx10", new Double(1));
+            pointXY.put("pointy0", new Double(0));
+            pointXY.put("pointy1", new Double(0));
+            pointXY.put("pointy2", new Double(0));
+            pointXY.put("pointy3", new Double(0));
+            pointXY.put("pointy4", new Double(0));
+            pointXY.put("pointy5", new Double(0));
+            pointXY.put("pointy6", new Double(0));
+            pointXY.put("pointy7", new Double(1));
+            pointXY.put("pointy8", new Double(1));
+            pointXY.put("pointy9", new Double(1));
+            pointXY.put("pointy10", new Double(1));
+
+        }
+
+
+        @Override
+        Map<String, Double> getPointXY() {
+            return pointXY;
+        }
+    }
+
+
+    class PlanFactory {
+
+        public Plan getPlan(String planType) {
+            if (planType == null) {
+                return null;
+            }
+            if (planType.equalsIgnoreCase("Dec4")) {
+                return new Dec4();
+            } else if (planType.equalsIgnoreCase("Dec8")) {
+                return new Dec8();
+            } else if (planType.equalsIgnoreCase("Dec16")) {
+                return new Dec16();
+            } else if (planType.equalsIgnoreCase("Dec32")) {
+                return new Dec32();
+            } else if (planType.equalsIgnoreCase("Dec64")) {
+                return new Dec64();
+            } else if (planType.equalsIgnoreCase("Dec128")) {
+                return new Dec128();
+            } else if (planType.equalsIgnoreCase("Dec256")) {
+                return new Dec256();
+            } else if (planType.equalsIgnoreCase("Dec512")) {
+                return new Dec512();
+            } else if (planType.equalsIgnoreCase("Dec1024")) {
+                return new Dec1024();
+            }
+
+            return null;
+        }
+    }
+
+
+}
+
+interface PinsHandlerPlan {
+
+
+    String generateRightBaseAndRect(int word, int bit);
+
+    String generateLeftBaseAndRect(int word);
+}
+
+class Base {
+    public static double half_of_base_length = 0.08;
+    public static double half_of_base_width = 0.04;
+}
+
+class LeftRectangle {
+    public static double half_of_a_rect_length = 0.3505;
+    public static double half_of_a_rect_width = 0.168;
+}
 
 class FileHandler implements FileInOutProtocol {
 
@@ -321,7 +697,7 @@ class FileHandler implements FileInOutProtocol {
     public String read(String address) throws IOException {
         Path path = Paths.get(address);
         StringBuilder sb = new StringBuilder();
-        Files.lines(path).forEach(str -> sb.append(str+"\n"));
+        Files.lines(path).forEach(str -> sb.append(str + "\n"));
         return sb.toString();
 
     }
@@ -479,5 +855,5 @@ final class MainPosition {
 
 final class ShiftSize {
     public final static double dx = 3.626;
-    public final static double dy = 2.4;
+    public final static double dy = 2.48;
 }
