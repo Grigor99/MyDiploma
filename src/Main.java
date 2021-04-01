@@ -285,8 +285,7 @@ class Main implements MainLogic {
     }
 
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws IllegalAccessException {
 
 
     }
@@ -365,6 +364,20 @@ class PinsHandler implements PinsHandlerPlan {
         }
 
         return result;
+    }
+
+
+    @Override
+    public String buildVssAndVdd(int word) throws IllegalAccessException {
+        VssVdd object = new VssVdd();
+        int EVEN_OR_ODD = AsideSolution.log2(word);
+        if (EVEN_OR_ODD % 2 == 0) {
+            return object.getVssAndVdd("even");
+        } else if (EVEN_OR_ODD % 2 != 0) {
+            return object.getVssAndVdd("odd");
+        } else {
+            return null;
+        }
     }
 
     static abstract class Plan {
@@ -656,6 +669,8 @@ interface PinsHandlerPlan {
     String generateRightBaseAndRect(int word, int bit);
 
     String generateLeftBaseAndRect(int word);
+
+    String buildVssAndVdd(int word) throws IllegalAccessException;
 }
 
 class Base {
@@ -666,6 +681,31 @@ class Base {
 class LeftRectangle {
     public static double half_of_a_rect_length = 0.3505;
     public static double half_of_a_rect_width = 0.168;
+}
+
+class VssVdd {
+    private Map<String, String> vssAndVdd;
+
+
+    public VssVdd() {
+        vssAndVdd = new HashMap<>();
+        vssAndVdd.put("even", "t{42 mc fx m0.2 a180 xy(0.452 17.33) 'vss'}\n" +
+                "b{42 xy(0.398 17.207 0.505 17.207 0.505 17.454 0.398 17.454)}\n" +
+                "t{42 mc fx m0.2 a180 xy(0.765 17.308) 'vdd'}\n" +
+                "b{42 xy(0.728 17.208 0.801 17.208 0.801 17.408 0.728 17.408)}\n");
+        vssAndVdd.put("odd", "t{42 mc m0.2 xy(0.75 13.216) 'vdd'}\n" +
+                "b{42 xy(0.734 13.16 0.767 13.16 0.767 13.273 0.734 13.273)}\n" +
+                "t{42 mc m0.2 xy(0.442 13.776) 'vss'}\n" +
+                "b{42 xy(0.425 13.699 0.46 13.699 0.46 13.854 0.425 13.854)}\n");
+    }
+
+    public String getVssAndVdd(String name) throws IllegalAccessException {
+        if (!(name.equalsIgnoreCase("even") || name.equalsIgnoreCase("odd")))
+            throw new IllegalAccessException("wrong vss and vdd info");
+        return vssAndVdd.get(name.toLowerCase());
+    }
+
+
 }
 
 class FileHandler implements FileInOutProtocol {
