@@ -310,8 +310,8 @@ class PinsHandler implements PinsHandlerPlan {
             double pointX = (points.get("pointx" + i) + distanceBetweenTwoPoints + shiftX * ShiftSize.dx);
             double pointY = points.get("pointy" + i);
 //rect
-            double x1r = (pointX - LeftRectangle.half_of_a_rect_length);//rect
-            double y1r = (pointY - LeftRectangle.half_of_a_rect_width);//rect
+            double x1r = (pointX - LeftRightARectangle.half_of_a_rect_length);//rect
+            double y1r = (pointY - LeftRightARectangle.half_of_a_rect_width);//rect
 //base
             double xb1 = (pointX - Base.half_of_base_length);
             double xb2 = (pointX + Base.half_of_base_length);
@@ -346,8 +346,8 @@ class PinsHandler implements PinsHandlerPlan {
             double pointX = points.get("pointx" + i);
             double pointY = points.get("pointy" + i);
 //rect
-            double x1r = (pointX - LeftRectangle.half_of_a_rect_length);//rect
-            double y1r = (pointY - LeftRectangle.half_of_a_rect_width);//rect
+            double x1r = (pointX - LeftRightARectangle.half_of_a_rect_length);//rect
+            double y1r = (pointY - LeftRightARectangle.half_of_a_rect_width);//rect
 //base
             double xb1 = (pointX - Base.half_of_base_length);
             double xb2 = (pointX + Base.half_of_base_length);
@@ -378,6 +378,17 @@ class PinsHandler implements PinsHandlerPlan {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public String getIoregOnes() {
+        IoregPins pins = new IoregPins();
+        return pins.getOnes();
+    }
+
+    @Override
+    public String getIoreg2s(int bit) {
+        return new IoregPins().get2(bit);
     }
 
     static abstract class Plan {
@@ -671,6 +682,142 @@ interface PinsHandlerPlan {
     String generateLeftBaseAndRect(int word);
 
     String buildVssAndVdd(int word) throws IllegalAccessException;
+
+    String getIoregOnes();
+
+    String getIoreg2s(int bit);
+}
+
+final class IoregPins {
+    private final String CE1;
+    private final String CE1BASE;
+    private final String CSB1;
+    private final String CSB1BASE;
+    private final String WEB1;
+    private final String WEB1BASE;
+    private final String OEB1;
+    private final String OEB1BASE;
+
+    private double CE2X = 31.861;
+    private double CE2Y = 9.808;
+    private double CSB2X = 31.86;
+    private double CSB2Y = 9.468;
+    private double WEB2X = 31.86;
+    private double WEB2Y = 2.965;
+    private double OEB2X = 31.86;
+    private double OEB2Y = 8.999;
+
+    private double CE2BASE_X = 31.861;
+    private double CE2BASE_Y = 9.808;
+    private double CSB2BASE_X = 31.860;
+    private double CSB2BASE_Y = 9.468;
+    private double WEB2BASE_X = 31.860;
+    private double WEB2BASE_Y = 2.965;
+    private double OEB2BASE_X = 31.860;
+    private double OEB2BASE_Y = 8.999;
+
+
+    IoregPins() {
+        CE1 = "t{41 mc fx m0.2 a180 xy(0.081 9.808) 'CE1'}";
+        CE1BASE = "b{41 xy(0 9.679 0.16 9.769 0.16 9.849 0 9.849)}";
+        CSB1 = "t{41 mc m.2 xy(0.08 9.468) 'CSB1'}";
+        CSB1BASE = "b{41 xy(0 9.428 0.16 9.428 0.16 9.508 0 9.508)}";
+        WEB1 = "t{41 mc fx m0.2 a180 xy(0.08 2.965) 'WEB1'}";
+        WEB1BASE = "b{41 xy(0 2.925 0.16 2.925 0.16 3.005 0 3.005)}";
+        OEB1 = "t{41 mc m0.2 xy(0.08 8.999) 'OEB1'}";
+        OEB1BASE = "b{41 xy(0 8.959 0.16 8.959 0.16 9.039 0 9.039)}";
+    }
+
+    public String getOnes() {
+        String ones = "" + CE1 + "\n" + CE1BASE + "\n" + CSB1 + "\n" + CSB1BASE + "\n" + WEB1 + "\n" + WEB1BASE + "\n" + OEB1 + "\n" + OEB1BASE + "\n";
+        return ones;
+    }
+
+    public String get2(int bit) {
+        int m = (bit / 4) - 1;
+        double add = ShiftSize.dx * m;
+        String result = "";
+        result += get2sCE2(add) + get2sCSB2(add) + get2sWEB2(add) + get2sOEB2(add);
+        return result;
+    }
+
+    private String get2sCE2(double add) {
+        NumberFormat nf = NumberFormat.getInstance();
+        nf.setMaximumFractionDigits(3);
+        double ce_base_x1 = (CE2BASE_X + add) - Base.half_of_base_length;
+        double ce_base_x2 = (CE2BASE_X + add) + Base.half_of_base_length;
+        double ce_base_x3 = ce_base_x2;
+        double ce_base_x4 = ce_base_x1;
+        double ce_base_y1 = CE2BASE_Y - Base.half_of_base_width;
+        double ce_base_y2 = ce_base_y1;
+        double ce_base_y3 = CE2BASE_Y + Base.half_of_base_width;
+        double ce_base_y4 = ce_base_y3;
+
+        String CE2_WITH_BASE = "" + "t{41 mc fx m0.2 a180 xy(" + (nf.format(CE2X + add)) + " " + nf.format(CE2Y) + ")" + " " + "'CE2'}" + "\n" +
+                "b{41 xy(" + nf.format(ce_base_x1) + " " + nf.format(ce_base_y1) + " " + nf.format(ce_base_x2) + " " +
+                nf.format(ce_base_y2) + " " + nf.format(ce_base_x3) + " " + nf.format(ce_base_y3) + " " + nf.format(ce_base_x4) + " " +
+                nf.format(ce_base_y4) + ")}" + "\n";
+        return CE2_WITH_BASE;
+    }
+
+    private String get2sCSB2(double add) {
+        NumberFormat nf = NumberFormat.getInstance();
+        nf.setMaximumFractionDigits(3);
+        double ce_base_x1 = (CSB2BASE_X + add) - Base.half_of_base_length;
+        double ce_base_x2 = (CSB2BASE_X + add) + Base.half_of_base_length;
+        double ce_base_x3 = ce_base_x2;
+        double ce_base_x4 = ce_base_x1;
+        double ce_base_y1 = CSB2BASE_Y - Base.half_of_base_width;
+        double ce_base_y2 = ce_base_y1;
+        double ce_base_y3 = CSB2BASE_Y + Base.half_of_base_width;
+        double ce_base_y4 = ce_base_y3;
+
+        String CSB2_WITH_BASE = "" + "t{41 mc m0.2 xy(" + (nf.format(CSB2X + add)) + " " + nf.format(CSB2Y) + ")" + " " + "'CSB2'}" + "\n" +
+                "b{41 xy(" + nf.format(ce_base_x1) + " " + nf.format(ce_base_y1) + " " + nf.format(ce_base_x2) + " " +
+                nf.format(ce_base_y2) + " " + nf.format(ce_base_x3) + " " + nf.format(ce_base_y3) + " " + nf.format(ce_base_x4) + " " +
+                nf.format(ce_base_y4) + ")}" + "\n";
+        return CSB2_WITH_BASE;
+    }
+
+    private String get2sWEB2(double add) {
+        NumberFormat nf = NumberFormat.getInstance();
+        nf.setMaximumFractionDigits(3);
+        double ce_base_x1 = (WEB2BASE_X + add) - Base.half_of_base_length;
+        double ce_base_x2 = (WEB2BASE_X + add) + Base.half_of_base_length;
+        double ce_base_x3 = ce_base_x2;
+        double ce_base_x4 = ce_base_x1;
+        double ce_base_y1 = WEB2BASE_Y - Base.half_of_base_width;
+        double ce_base_y2 = ce_base_y1;
+        double ce_base_y3 = WEB2BASE_Y + Base.half_of_base_width;
+        double ce_base_y4 = ce_base_y3;
+
+        String WEB2_WITH_BASE = "" + "t{41 mc fx m0.2 a180 xy(" + (nf.format(WEB2X + add)) + " " + nf.format(WEB2Y) + ")" + " " + "'WEB2'}" + "\n" +
+                "b{41 xy(" + nf.format(ce_base_x1) + " " + nf.format(ce_base_y1) + " " + nf.format(ce_base_x2) + " " +
+                nf.format(ce_base_y2) + " " + nf.format(ce_base_x3) + " " + nf.format(ce_base_y3) + " " + nf.format(ce_base_x4) + " " +
+                nf.format(ce_base_y4) + ")}" + "\n";
+        return WEB2_WITH_BASE;
+    }
+
+    private String get2sOEB2(double add) {
+        NumberFormat nf = NumberFormat.getInstance();
+        nf.setMaximumFractionDigits(3);
+        double ce_base_x1 = (OEB2BASE_X + add) - Base.half_of_base_length;
+        double ce_base_x2 = (OEB2BASE_X + add) + Base.half_of_base_length;
+        double ce_base_x3 = ce_base_x2;
+        double ce_base_x4 = ce_base_x1;
+        double ce_base_y1 = OEB2BASE_Y - Base.half_of_base_width;
+        double ce_base_y2 = ce_base_y1;
+        double ce_base_y3 = OEB2BASE_Y + Base.half_of_base_width;
+        double ce_base_y4 = ce_base_y3;
+
+        String OEB2_WITH_BASE = "" + "t{41 mc m0.2 xy(" + (nf.format(OEB2X + add)) + " " + nf.format(OEB2Y) + ")" + " " + "'OEB2'}" + "\n" +
+                "b{41 xy(" + nf.format(ce_base_x1) + " " + nf.format(ce_base_y1) + " " + nf.format(ce_base_x2) + " " +
+                nf.format(ce_base_y2) + " " + nf.format(ce_base_x3) + " " + nf.format(ce_base_y3) + " " + nf.format(ce_base_x4) + " " +
+                nf.format(ce_base_y4) + ")}" + "\n";
+        return OEB2_WITH_BASE;
+    }
+
+
 }
 
 class Base {
@@ -678,7 +825,7 @@ class Base {
     public static double half_of_base_width = 0.04;
 }
 
-class LeftRectangle {
+class LeftRightARectangle {
     public static double half_of_a_rect_length = 0.3505;
     public static double half_of_a_rect_width = 0.168;
 }
