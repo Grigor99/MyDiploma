@@ -390,6 +390,36 @@ class PinsHandler implements PinsHandlerPlan {
         return new IoregPins().get2(bit);
     }
 
+    private String generate(int multiplier, int firstN, int secondN) {// 0 1   2  3   4  5
+
+        return null;
+    }
+
+    public String execute(int bit) {
+        int num = bit / 4;
+        PinsHandler object = new PinsHandler();
+        StringBuilder builder = new StringBuilder();
+        for (final int[] i = {0}; i[0] < num; i[0]++) {
+            int j = 0;
+            int finalJ = j;
+            Thread t=new Thread() {
+                @Override
+                public void run() {
+                    builder.append(object.generate(i[0], i[0] + finalJ, ++i[0] + finalJ) + "\n");
+                }
+            };
+            t.start();
+            try {
+                t.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            ++j;
+        }
+        return builder.toString();
+    }
+
+
     static abstract class Plan {
         protected Map<String, Double> pointXY;
 
@@ -827,6 +857,18 @@ class Base {
 class LeftRightARectangle {
     public static double half_of_a_rect_length = 0.3505;
     public static double half_of_a_rect_width = 0.168;
+}
+
+class IO_Sizes {
+    public static final double I_half_of_length = 0.078;
+    public static final double I_half_of_width = 0.0425;
+    public static final double O_half_of_length = 0.0915;
+    public static final double O_half_of_width = 0.0425;
+}
+
+class IO_Base_Size {
+    public static final double BASE_half_of_length = 0.08;
+    public static final double BASE_half_of_width = 0.0665;
 }
 
 class VssVdd {
