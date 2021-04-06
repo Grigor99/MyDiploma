@@ -402,7 +402,7 @@ class PinsHandler implements PinsHandlerPlan {
         for (final int[] i = {0}; i[0] < num; i[0]++) {
             int j = 0;
             int finalJ = j;
-            Thread t=new Thread() {
+            Thread t = new Thread() {
                 @Override
                 public void run() {
                     builder.append(object.generate(i[0], i[0] + finalJ, ++i[0] + finalJ) + "\n");
@@ -869,6 +869,19 @@ class IO_Sizes {
 class IO_Base_Size {
     public static final double BASE_half_of_length = 0.08;
     public static final double BASE_half_of_width = 0.0665;
+}
+
+class IO_BASE_POINTS {
+    public static final double i1minx = 14.759;
+    public static final double o1minx = 15.010;
+    public static final double i1maxx = 15.351;
+    public static final double o1maxx = 15.602;
+    public static final double i2minx = 16.757;
+    public static final double o2minx = 17.008;
+    public static final double i2maxx = 17.349;
+    public static final double o2maxx = 17.600;
+    public static final double common_y = 0.066;
+
 }
 
 class VssVdd {
