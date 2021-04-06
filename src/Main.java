@@ -286,8 +286,7 @@ class Main implements MainLogic {
 
 
     public static void main(String[] args) throws IllegalAccessException {
-
-
+        System.out.println(new PinsHandler().getIoreg2s(8));
     }
 }
 
@@ -698,14 +697,14 @@ final class IoregPins {
     private final String OEB1;
     private final String OEB1BASE;
 
-    private double CE2X = 31.861;
-    private double CE2Y = 9.808;
-    private double CSB2X = 31.86;
-    private double CSB2Y = 9.468;
-    private double WEB2X = 31.86;
-    private double WEB2Y = 2.965;
-    private double OEB2X = 31.86;
-    private double OEB2Y = 8.999;
+    private double CE2X = 31.642;
+    private double CE2Y = 9.641;
+    private double CSB2X = 31.563;
+    private double CSB2Y = 9.301;
+    private double WEB2X = 31.518;
+    private double WEB2Y = 2.798;
+    private double OEB2X = 31.550;
+    private double OEB2Y = 8.832;
 
     private double CE2BASE_X = 31.861;
     private double CE2BASE_Y = 9.808;
