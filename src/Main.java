@@ -431,12 +431,12 @@ class PinsHandler implements PinsHandlerPlan {
 
         public Dec4() {// 01
             pointXY = new HashMap<>();
-            pointXY.put("pointx0", new Double(0));
-            pointXY.put("pointx1", new Double(0));
-            pointXY.put("pointx2", new Double(1));
-            pointXY.put("pointy0", new Double(0));
-            pointXY.put("pointy1", new Double(0));
-            pointXY.put("pointy2", new Double(1));
+            pointXY.put("pointx0", new Double(5.43));
+            pointXY.put("pointx1", new Double(5.43));
+            pointXY.put("pointx2", new Double(5.43));
+            pointXY.put("pointy0", new Double(3.454));
+            pointXY.put("pointy1", new Double(4.564));
+            pointXY.put("pointy2", new Double(4.998));
         }
 
 
@@ -450,14 +450,14 @@ class PinsHandler implements PinsHandlerPlan {
 
         public Dec8() {
             pointXY = new HashMap<>();
-            pointXY.put("pointx0", new Double(0));
-            pointXY.put("pointx1", new Double(0));
-            pointXY.put("pointx2", new Double(0));
-            pointXY.put("pointx3", new Double(1));
-            pointXY.put("pointy0", new Double(0));
-            pointXY.put("pointy1", new Double(0));
-            pointXY.put("pointy2", new Double(0));
-            pointXY.put("pointy3", new Double(1));
+            pointXY.put("pointx0", new Double(5.43));
+            pointXY.put("pointx1", new Double(5.43));
+            pointXY.put("pointx2", new Double(5.43));
+            pointXY.put("pointx3", new Double(5.43));
+            pointXY.put("pointy0", new Double(3.234));
+            pointXY.put("pointy1", new Double(3.897));
+            pointXY.put("pointy2", new Double(4.32));
+            pointXY.put("pointy3", new Double(5.322));
         }
 
 
@@ -471,16 +471,16 @@ class PinsHandler implements PinsHandlerPlan {
 
         public Dec16() {
             pointXY = new HashMap<>();
-            pointXY.put("pointx0", new Double(0));
-            pointXY.put("pointx1", new Double(0));
-            pointXY.put("pointx2", new Double(0));
-            pointXY.put("pointx3", new Double(0));
-            pointXY.put("pointx4", new Double(1));
-            pointXY.put("pointy0", new Double(0));
-            pointXY.put("pointy1", new Double(0));
-            pointXY.put("pointy2", new Double(0));
-            pointXY.put("pointy3", new Double(0));
-            pointXY.put("pointy4", new Double(1));
+            pointXY.put("pointx0", new Double(5.43));
+            pointXY.put("pointx1", new Double(5.43));
+            pointXY.put("pointx2", new Double(5.43));
+            pointXY.put("pointx3", new Double(5.43));
+            pointXY.put("pointx4", new Double(5.43));
+            pointXY.put("pointy0", new Double(2.453));
+            pointXY.put("pointy1", new Double(3.211));
+            pointXY.put("pointy2", new Double(4.322));
+            pointXY.put("pointy3", new Double(4.765));
+            pointXY.put("pointy4", new Double(5.432));
         }
 
 
@@ -494,18 +494,18 @@ class PinsHandler implements PinsHandlerPlan {
 
         public Dec32() {
             pointXY = new HashMap<>();
-            pointXY.put("pointx0", new Double(0));
-            pointXY.put("pointx1", new Double(0));
-            pointXY.put("pointx2", new Double(0));
-            pointXY.put("pointx3", new Double(0));
-            pointXY.put("pointx4", new Double(0));
-            pointXY.put("pointx5", new Double(1));
-            pointXY.put("pointy0", new Double(0));
-            pointXY.put("pointy1", new Double(0));
-            pointXY.put("pointy2", new Double(0));
-            pointXY.put("pointy3", new Double(0));
-            pointXY.put("pointy4", new Double(0));
-            pointXY.put("pointy5", new Double(1));
+            pointXY.put("pointx0", new Double(5.43));
+            pointXY.put("pointx1", new Double(5.43));
+            pointXY.put("pointx2", new Double(5.43));
+            pointXY.put("pointx3", new Double(5.43));
+            pointXY.put("pointx4", new Double(5.43));
+            pointXY.put("pointx5", new Double(5.43));
+            pointXY.put("pointy0", new Double(3.23));
+            pointXY.put("pointy1", new Double(3.564));
+            pointXY.put("pointy2", new Double(5.222));
+            pointXY.put("pointy3", new Double(5.432));
+            pointXY.put("pointy4", new Double(6.544));
+            pointXY.put("pointy5", new Double(7.543));
         }
 
 
@@ -519,20 +519,20 @@ class PinsHandler implements PinsHandlerPlan {
 
         public Dec64() {
             pointXY = new HashMap<>();
-            pointXY.put("pointx0", new Double(0));
-            pointXY.put("pointx1", new Double(0));
-            pointXY.put("pointx2", new Double(0));
-            pointXY.put("pointx3", new Double(0));
-            pointXY.put("pointx4", new Double(0));
-            pointXY.put("pointx5", new Double(0));
-            pointXY.put("pointx6", new Double(1));
-            pointXY.put("pointy0", new Double(0));
-            pointXY.put("pointy1", new Double(0));
-            pointXY.put("pointy2", new Double(0));
-            pointXY.put("pointy3", new Double(0));
-            pointXY.put("pointy4", new Double(0));
-            pointXY.put("pointy5", new Double(0));
-            pointXY.put("pointy6", new Double(1));
+            pointXY.put("pointx0", new Double(5.43));
+            pointXY.put("pointx1", new Double(5.43));
+            pointXY.put("pointx2", new Double(5.43));
+            pointXY.put("pointx3", new Double(5.43));
+            pointXY.put("pointx4", new Double(5.43));
+            pointXY.put("pointx5", new Double(5.43));
+            pointXY.put("pointx6", new Double(5.43));
+            pointXY.put("pointy0", new Double(3.444));
+            pointXY.put("pointy1", new Double(5.432));
+            pointXY.put("pointy2", new Double(5.999));
+            pointXY.put("pointy3", new Double(6.876));
+            pointXY.put("pointy4", new Double(7.433));
+            pointXY.put("pointy5", new Double(8.332));
+            pointXY.put("pointy6", new Double(9.443));
         }
 
 
@@ -546,22 +546,22 @@ class PinsHandler implements PinsHandlerPlan {
 
         public Dec128() {
             pointXY = new HashMap<>();
-            pointXY.put("pointx0", new Double(0));
-            pointXY.put("pointx1", new Double(0));
-            pointXY.put("pointx2", new Double(0));
-            pointXY.put("pointx3", new Double(0));
-            pointXY.put("pointx4", new Double(0));
-            pointXY.put("pointx5", new Double(0));
-            pointXY.put("pointx6", new Double(0));
-            pointXY.put("pointx7", new Double(1));
-            pointXY.put("pointy0", new Double(0));
-            pointXY.put("pointy1", new Double(0));
-            pointXY.put("pointy2", new Double(0));
-            pointXY.put("pointy3", new Double(0));
-            pointXY.put("pointy4", new Double(0));
-            pointXY.put("pointy5", new Double(0));
-            pointXY.put("pointy6", new Double(0));
-            pointXY.put("pointy7", new Double(1));
+            pointXY.put("pointx0", new Double(5.43));
+            pointXY.put("pointx1", new Double(5.43));
+            pointXY.put("pointx2", new Double(5.43));
+            pointXY.put("pointx3", new Double(5.43));
+            pointXY.put("pointx4", new Double(5.43));
+            pointXY.put("pointx5", new Double(5.43));
+            pointXY.put("pointx6", new Double(5.43));
+            pointXY.put("pointx7", new Double(5.43));
+            pointXY.put("pointy0", new Double(3.2344));
+            pointXY.put("pointy1", new Double(4.333));
+            pointXY.put("pointy2", new Double(4.899));
+            pointXY.put("pointy3", new Double(5.445));
+            pointXY.put("pointy4", new Double(6.342));
+            pointXY.put("pointy5", new Double(7.543));
+            pointXY.put("pointy6", new Double(8.322));
+            pointXY.put("pointy7", new Double(8.542));
         }
 
 
@@ -575,24 +575,24 @@ class PinsHandler implements PinsHandlerPlan {
 
         public Dec256() {
             pointXY = new HashMap<>();
-            pointXY.put("pointx0", new Double(0));
-            pointXY.put("pointx1", new Double(0));
-            pointXY.put("pointx2", new Double(0));
-            pointXY.put("pointx3", new Double(0));
-            pointXY.put("pointx4", new Double(0));
-            pointXY.put("pointx5", new Double(0));
-            pointXY.put("pointx6", new Double(0));
-            pointXY.put("pointx7", new Double(1));
-            pointXY.put("pointx8", new Double(1));
-            pointXY.put("pointy0", new Double(0));
-            pointXY.put("pointy1", new Double(0));
-            pointXY.put("pointy2", new Double(0));
-            pointXY.put("pointy3", new Double(0));
-            pointXY.put("pointy4", new Double(0));
-            pointXY.put("pointy5", new Double(0));
-            pointXY.put("pointy6", new Double(0));
-            pointXY.put("pointy7", new Double(1));
-            pointXY.put("pointy8", new Double(1));
+            pointXY.put("pointx0", new Double(5.43));
+            pointXY.put("pointx1", new Double(5.43));
+            pointXY.put("pointx2", new Double(5.43));
+            pointXY.put("pointx3", new Double(5.43));
+            pointXY.put("pointx4", new Double(5.43));
+            pointXY.put("pointx5", new Double(5.43));
+            pointXY.put("pointx6", new Double(5.43));
+            pointXY.put("pointx7", new Double(5.43));
+            pointXY.put("pointx8", new Double(5.43));
+            pointXY.put("pointy0", new Double(2.343));
+            pointXY.put("pointy1", new Double(4.322));
+            pointXY.put("pointy2", new Double(5.322));
+            pointXY.put("pointy3", new Double(6.123));
+            pointXY.put("pointy4", new Double(6.994));
+            pointXY.put("pointy5", new Double(7.432));
+            pointXY.put("pointy6", new Double(8.123));
+            pointXY.put("pointy7", new Double(9.453));
+            pointXY.put("pointy8", new Double(10.211));
         }
 
 
@@ -605,26 +605,26 @@ class PinsHandler implements PinsHandlerPlan {
     public static class Dec512 extends Plan {
         public Dec512() {
             pointXY = new HashMap<>();
-            pointXY.put("pointx0", new Double(0));
-            pointXY.put("pointx1", new Double(0));
-            pointXY.put("pointx2", new Double(0));
-            pointXY.put("pointx3", new Double(0));
-            pointXY.put("pointx4", new Double(0));
-            pointXY.put("pointx5", new Double(0));
-            pointXY.put("pointx6", new Double(0));
-            pointXY.put("pointx7", new Double(1));
-            pointXY.put("pointx8", new Double(1));
-            pointXY.put("pointx9", new Double(1));
-            pointXY.put("pointy0", new Double(0));
-            pointXY.put("pointy1", new Double(0));
-            pointXY.put("pointy2", new Double(0));
-            pointXY.put("pointy3", new Double(0));
-            pointXY.put("pointy4", new Double(0));
-            pointXY.put("pointy5", new Double(0));
-            pointXY.put("pointy6", new Double(0));
-            pointXY.put("pointy7", new Double(1));
-            pointXY.put("pointy8", new Double(1));
-            pointXY.put("pointy9", new Double(1));
+            pointXY.put("pointx0", new Double(5.43));
+            pointXY.put("pointx1", new Double(5.43));
+            pointXY.put("pointx2", new Double(5.43));
+            pointXY.put("pointx3", new Double(5.43));
+            pointXY.put("pointx4", new Double(5.43));
+            pointXY.put("pointx5", new Double(5.43));
+            pointXY.put("pointx6", new Double(5.43));
+            pointXY.put("pointx7", new Double(5.43));
+            pointXY.put("pointx8", new Double(5.43));
+            pointXY.put("pointx9", new Double(5.43));
+            pointXY.put("pointy0", new Double(3.453));
+            pointXY.put("pointy1", new Double(4.332));
+            pointXY.put("pointy2", new Double(5.343));
+            pointXY.put("pointy3", new Double(5.998));
+            pointXY.put("pointy4", new Double(7.223));
+            pointXY.put("pointy5", new Double(8.223));
+            pointXY.put("pointy6", new Double(9.232));
+            pointXY.put("pointy7", new Double(11.234));
+            pointXY.put("pointy8", new Double(12.433));
+            pointXY.put("pointy9", new Double(12.998));
         }
 
 
@@ -637,28 +637,28 @@ class PinsHandler implements PinsHandlerPlan {
     public static class Dec1024 extends Plan {
         public Dec1024() {
             pointXY = new HashMap<>();
-            pointXY.put("pointx0", new Double(0));
-            pointXY.put("pointx1", new Double(0));
-            pointXY.put("pointx2", new Double(0));
-            pointXY.put("pointx3", new Double(0));
-            pointXY.put("pointx4", new Double(0));
-            pointXY.put("pointx5", new Double(0));
-            pointXY.put("pointx6", new Double(0));
-            pointXY.put("pointx7", new Double(1));
-            pointXY.put("pointx8", new Double(1));
-            pointXY.put("pointx9", new Double(1));
-            pointXY.put("pointx10", new Double(1));
-            pointXY.put("pointy0", new Double(0));
-            pointXY.put("pointy1", new Double(0));
-            pointXY.put("pointy2", new Double(0));
-            pointXY.put("pointy3", new Double(0));
-            pointXY.put("pointy4", new Double(0));
-            pointXY.put("pointy5", new Double(0));
-            pointXY.put("pointy6", new Double(0));
-            pointXY.put("pointy7", new Double(1));
-            pointXY.put("pointy8", new Double(1));
-            pointXY.put("pointy9", new Double(1));
-            pointXY.put("pointy10", new Double(1));
+            pointXY.put("pointx0", new Double(5.43));
+            pointXY.put("pointx1", new Double(5.43));
+            pointXY.put("pointx2", new Double(5.43));
+            pointXY.put("pointx3", new Double(5.43));
+            pointXY.put("pointx4", new Double(5.43));
+            pointXY.put("pointx5", new Double(5.43));
+            pointXY.put("pointx6", new Double(5.43));
+            pointXY.put("pointx7", new Double(5.43));
+            pointXY.put("pointx8", new Double(5.43));
+            pointXY.put("pointx9", new Double(5.43));
+            pointXY.put("pointx10", new Double(5.43));
+            pointXY.put("pointy0", new Double(3.22));
+            pointXY.put("pointy1", new Double(4.223));
+            pointXY.put("pointy2", new Double(5.322));
+            pointXY.put("pointy3", new Double(6.212));
+            pointXY.put("pointy4", new Double(7.211));
+            pointXY.put("pointy5", new Double(7.992));
+            pointXY.put("pointy6", new Double(9.132));
+            pointXY.put("pointy7", new Double(11.12));
+            pointXY.put("pointy8", new Double(13.894));
+            pointXY.put("pointy9", new Double(14.222));
+            pointXY.put("pointy10", new Double(17.322));
 
         }
 
