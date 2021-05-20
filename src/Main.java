@@ -904,6 +904,19 @@ class VssVdd {
                 "b{42 xy(0.425 13.699 0.46 13.699 0.46 13.854 0.425 13.854)}\n");
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
     public String getVssAndVdd(String name) throws IllegalAccessException {
         if (!(name.equalsIgnoreCase("even") || name.equalsIgnoreCase("odd")))
             throw new IllegalAccessException("wrong vss and vdd info");
