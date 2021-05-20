@@ -15,6 +15,9 @@ import java.util.regex.Pattern;
 
 class Main implements MainLogic {
 
+    public interface  doNothing{
+
+    }
     private final static String address = "C:\\Users\\User\\Desktop\\Grigor.gdt";
 
     private String FINAL_SHIFTED_RIGHT_COLUMN;
@@ -855,6 +858,7 @@ class Base {
 }
 
 class LeftRightARectangle {
+    private String nbew="fddfdfdfd";////////////////////////////////////////////////////////////////////////
     public static double half_of_a_rect_length = 0.3505;
     public static double half_of_a_rect_width = 0.168;
 }
@@ -1029,7 +1033,9 @@ final class Decoders {
 
     private static final String dec9x512_left = "s{'sgd_dec_9X512_left' xy(0 12.929)}";
     private static final String dec9x512_right = "s{'sgd_dec_9X512_Right' xy(17.783 12.929)}";
-
+/*
+private static final String dec8x256_right = "s{'sgd_dec_8x256_right' xy(17.783 12.929)}";
+ */
     private static final String dec10x1024_left = "s{'sgd_dec_10X1024_left' xy(0 12.929)}";
     private static final String dec10x1024_right = "s{'sgd_dec_10X1024_Right' xy(17.783 12.929)}";
 
